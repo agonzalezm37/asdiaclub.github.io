@@ -1,0 +1,392 @@
+
+
+
+
+//colores!!!
+
+
+$verde1: #AACD77;
+$verde2: #94CD42 ;
+$verde3: #447300 ;
+$verde4: #3B5317 ;
+$verde5: #2A4600 ;
+
+$azul1: #ADE6F1 ;
+$azul2: #62DAF1 ;
+$azul3: #039CB9 ;
+$azul4: #2D6670 ;
+$azul5: #004653 ;
+
+
+
+
+
+
+
+
+p{
+    margin : 0;
+}
+
+.calendario{
+    width : 100vw;
+    overflow:auto;
+    background-color: grey;
+    position: relative;
+    .celda{
+        height: 50px;
+        min-width: 60px;
+        background-color: aqua;
+        border-radius: 15px;
+        &.disabled{
+            background-color: grey;
+            pointer-events: none;
+            &.separator{
+                min-width: 20px;
+            }
+        }
+        &.selectable{
+            background-color: greenyellow;
+        }
+
+        &.active{
+            background-color: yellow;
+        }
+        position: relative;
+    }
+
+    .calendario-top{
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        background-color: blueviolet;
+        .celda{
+            background-color: rebeccapurple;
+            text-align: center;
+            p{
+                display: block;
+                position: sticky;
+                margin: 0 50px;
+                left: 50%;
+                width: max-content;
+            }
+        }
+        z-index: 20;
+    }
+
+    .calendario-desc{
+        margin-top: 100px;
+        margin-left: 60px;
+    }
+}
+.calendario-body{
+    // height: 150px;
+    // overflow-y: scroll;
+    scrollbar-width: none;
+    .calendario-left{
+        pointer-events: none;
+        z-index: 15;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: white;
+        .celda{
+            background-color: white;
+        }
+    }
+    &::-webkit-scrollbar{
+        display: none;
+        
+    }
+}
+.nueva-reserva, .reserva{
+    position: absolute;
+    top: 12.5%;
+    left: 50%;
+    height: 75%;
+    width: 15px;
+    background-color: black;
+    // pointer-events: none;
+    z-index: 10;
+    border-radius: 25px;
+    transition: width .1s , transform .6s;
+    display: flex;
+    p{
+        color: white;
+        display: block;
+        margin: auto;
+    }
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+.nueva-reserva{
+    pointer-events: none;   
+}
+.cosa{
+    background-color: $azul5!important;
+}
+.crear-reserva-form{
+    .row{
+        >div{
+            justify-self: center;
+            // margin: 1rem 0;
+        }
+    }
+}
+.select-users{
+    
+    background-color: $azul1;
+    td{
+        padding: 0 2rem;
+    }
+    
+}
+
+.cabecera{
+    z-index: 20;
+    background-color: $azul3;
+}
+
+.nav-caja{
+    background-color: $verde3;
+    flex-shrink: 0;
+    >.nav{
+        justify-content:flex-end;
+        align-items: center;
+        align-self: end;
+        flex-wrap: nowrap;
+        padding: 1rem 0;
+        >.nav-item{  
+            font-weight: bold;
+            >.nav-link{
+                color: $verde1;
+                max-width: 10em;
+                transition: .6s;
+                &.despl{
+                    display: flex;
+                    flex-wrap: nowrap;
+                    &::after{
+                        content: "";
+                        background-image: url("../img/arrowDown.png");
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        right: -.5rem;
+                        margin: .5rem .5rem;
+                        height: 10px;
+                        min-width: 10px;
+                        z-index: 3;
+                        transition: .6s;
+                    }
+                }
+                &:hover{
+                    &.despl{
+                        &::after{
+                            transform: translate(0, 50%);
+                            opacity: 0;
+                        }
+                    }
+                }
+            }
+            .desplegable{
+                .nav-link{
+                    color: $azul1;
+                    transition: .6s color;
+                    max-width: 18rem;
+                    &:hover{
+                        color:$azul5;
+                    }
+                }
+                z-index: 999;
+                display: none;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                position: absolute;
+                min-width: 10em;
+                background-color: rgba(255, 255, 255, 0.50);
+                top: 100%;
+                padding:1rem;
+                right: 0;
+                &.cabecera-baja{
+                    box-shadow: 3px 3px 2px 0 rgba(0, 0, 0, 0.25);
+                    background-color: white;
+                }
+                &.ficha-user{
+                    display: flex;
+                    flex-direction: column;
+                    .user-data{
+                        display: flex;
+                        flex-wrap: nowrap;
+                        .portrait{
+                            height: 100%;
+                            display: block;
+                            img{
+                                height: 75px;
+                                width: 75px;
+                            }
+                        }
+                    }
+                    .ficha-user-data{
+                        p{
+                            margin: 0 .5rem;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+.title{
+    display: block;
+    width: max-content;
+}
+
+.user-data{
+    .ficha-datos-per{
+        .portrait{
+            text-align: center;
+            img{
+                width: 150px;
+            }
+        }
+        .ficha-datos-personales{
+            display: flex;
+            flex-direction: column;
+            p{
+                height: min-content;
+            }
+        }
+    }
+}
+.cancelar-reserva-btn{
+    height: min-content;
+}
+
+.table-reservas{
+    thead{
+        position: relative;
+        background-color: $verde5;
+        border: solid 1px $verde3;
+        z-index: 999;
+    }
+    .reservac{
+        transition: .3s;
+        padding: 1rem;
+        border-bottom: solid 1px rgb(184, 184, 184);
+        &.close-reserva{
+            padding: 0;
+            font-size: 0;
+            opacity: 0;
+            // td{
+            //     padding:0;
+            //     border-top:none;
+            // }
+        }
+        &.selected{
+            background-color: $azul4!important;
+        }
+        td{
+
+            padding: inherit;
+            border-top:inherit;
+            transition: .3s;
+        }
+
+        &:hover{
+            background-color: $azul1(189, 189, 189);
+        }
+    }
+}
+
+
+
+.t-resize{
+    min-height: 100px;
+    max-height: 500px;
+    height: 55px;
+    overflow: auto;
+    user-select: none;
+}
+.table-resizer{
+    width: 100%;
+    height: 4px;
+    background-color: black;
+    cursor: ns-resize;
+    margin-bottom: 20px;
+
+
+
+}
+.galeria{
+    .item-gal{
+        display: block;
+        position:relative;
+        // width: 100%;
+        // height: 300px;
+        .item-img{
+
+            width: 100%;
+        }
+        .item-title{
+            display: block;
+            position: absolute;
+            background-color: rgba($verde5, .6);
+            padding: 1rem;
+            color: white;
+            text-align: center;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    }   
+}
+
+.pie{
+
+    width: 100%;
+    padding: 10px;
+    .pie-main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .logo-abajo{
+            margin: 3em auto 2em;
+            display: block;
+            img{
+                width: 120px;
+            }
+        }
+        .pie-contacto{
+            display: flex;
+            justify-content: center;
+            >*{
+                width: max-content;
+                &::after{
+                    content: "|";
+                    margin: 1ex;
+                }
+            }
+            >a{
+                display: block;
+                &::after{
+                    content:unset;
+                }
+            }
+        }
+    }
+    .banda-abajo{
+        padding: 1rem;
+        background-color: $verde5;
+        .nav{
+            justify-content:center;
+            .nav-link{
+                padding: 0 1em;
+            }
+        }
+    }
+}
+
